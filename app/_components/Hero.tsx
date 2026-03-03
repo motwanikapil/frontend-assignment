@@ -9,10 +9,10 @@ export default function Hero() {
       <div className="relative z-10 w-full">
         <Navbar />
       </div>
-      <section className="max-w-[1200px] text-center flex items-center justify-between w-full">
+      <section className="max-w-300 text-center flex items-center justify-between w-full">
         <HeroLeft />
         <HeroRight />
       </section>
     </main>
-  )
+  );
 }

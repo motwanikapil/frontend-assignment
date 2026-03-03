@@ -1,5 +1,7 @@
+import Image from "next/image";
+import { Instrument_Sans, Playfair_Display } from "next/font/google";
+
 import aromaticGarden from "@/public/amenities/aromatic_garden.png";
-import spaciousKitchen from "@/public/amenities/spacious_kitchen.jpg";
 import cricketNets from "@/public/amenities/cricket_nets.jpg";
 import gym from "@/public/amenities/gym.png";
 import joggingTrack from "@/public/amenities/jogging_track.png";
@@ -8,6 +10,19 @@ import largeBalcony from "@/public/amenities/large_balcony.jpg";
 import modernBedroom from "@/public/amenities/modern_bedroom.png";
 import multipurposeCourt from "@/public/amenities/multipurpose_court.jpg";
 import olympicPool from "@/public/amenities/olympic_pool.jpg";
+import partyLawn from "@/public/amenities/party_lawn.jpg";
+import spaciousKitchen from "@/public/amenities/spacious_kitchen.jpg";
+import ventilatedFlats from "@/public/amenities/ventilated_flats.jpg";
+
+const instrumentSans = Instrument_Sans({
+  subsets: ["latin"],
+  variable: "--font-instrument-sans",
+});
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-playfair",
+});
 
 const amenities = [
   {
@@ -17,93 +32,115 @@ const amenities = [
   },
   {
     title: "Spacious Kitchen",
-    image: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f",
+    image: spaciousKitchen,
   },
   {
     title: "Party Lawn",
-    image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+    image: partyLawn,
   },
   {
     title: "Multipurpose Court",
-    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b",
+    image: multipurposeCourt,
     span: "row-span-2",
   },
   {
     title: "Modern Bedroom",
-    image: "https://images.unsplash.com/photo-1505693314120-0d443867891c",
+    image: modernBedroom,
   },
   {
     title: "Gym",
-    image: "https://images.unsplash.com/photo-1558611848-73f7eb4001ab",
+    image: gym,
   },
   {
     title: "Cricket Nets",
-    image: "https://images.unsplash.com/photo-1593341646782-e0b495cff86d",
+    image: cricketNets,
   },
   {
     title: "1/2 Olympic Size Pool",
-    image: "https://images.unsplash.com/photo-1501117716987-c8e1ecb210f9",
+    image: olympicPool,
     span: "row-span-2",
   },
   {
     title: "Landscaped Gardens",
-    image: "https://images.unsplash.com/photo-1493244040629-496f6d136cc3",
+    image: landscapedGarden,
   },
   {
     title: "Ventilated Flats",
-    image: "https://images.unsplash.com/photo-1484154218962-a197022b5858",
+    image: ventilatedFlats,
   },
   {
     title: "Large Balcony",
-    image: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae",
+    image: largeBalcony,
   },
   {
     title: "Jogging Track",
-    image: "https://images.unsplash.com/photo-1492724441997-5dc865305da7",
+    image: joggingTrack,
   },
 ];
 
 export default function AmenitiesLayout() {
   return (
-    <div className="bg-neutral-900 min-h-screen p-6">
-      <div className="max-w-7xl mx-auto">
-        <h2 className="text-white text-3xl font-semibold mb-8">Amenities</h2>
-
-        <div
-          className="grid 
+    <main className="bg-white">
+      <div className="min-h-screen p-6 max-w-300 mx-auto">
+        <div className="max-w-7xl mx-auto">
+          <div className="gap-3">
+            <h1
+              className={`text-[56px] leading-[1.2] font-medium ${playfair.className} text-center`}
+            >
+              <span className="text-red-500">Amenities </span>
+              <span className="text-[#4B4D4C]">for Every Age, Every Mood</span>
+            </h1>
+            <span
+              className={`uppercase ${instrumentSans.className} text-[18px] leading-[1.45] font-medium tracking-[0.16em] italic text-center`}
+            >
+              home of positive energy
+            </span>
+            <section>
+              <Image
+                src="/divider.png"
+                width="476"
+                height="31"
+                alt="divider image"
+                className="mx-auto pb-3"
+              />
+            </section>
+            <div
+              className="grid 
                         grid-cols-1 
                         sm:grid-cols-2 
                         lg:grid-cols-3 
                         gap-6 
                         auto-rows-[220px]"
-        >
-          {amenities.map((item, index) => (
-            <div
-              key={index}
-              className={`relative group rounded-2xl overflow-hidden shadow-lg 
+            >
+              {amenities.map((item, index) => (
+                <div
+                  key={index}
+                  className={`relative group rounded-2xl overflow-hidden shadow-lg 
                          hover:shadow-2xl transition-all duration-500 
                          hover:-translate-y-1 ${item.span || ""}`}
-            >
-              <img
-                src={`${item.image}?auto=format&fit=crop&w=800&q=80`}
-                alt={item.title}
-                className="w-full h-full object-cover 
+                >
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-cover 
                            transition-transform duration-700 
                            group-hover:scale-110"
-              />
+                  />
 
-              <div
-                className="absolute bottom-4 left-4 
+                  <div
+                    className="absolute bottom-4 left-4 
                               bg-black/60 backdrop-blur-md 
                               text-white text-sm px-4 py-1.5 
                               rounded-full"
-              >
-                {item.title}
-              </div>
+                  >
+                    {item.title}
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 }

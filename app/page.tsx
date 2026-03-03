@@ -1,4 +1,5 @@
 import AboutLayout from "./_components/about/AboutLayout";
+import AmenitiesLayout from "./_components/amenities/AmenitiesLayout";
 import Hero from "./_components/Hero";
 import Prices from "./_components/prices/Prices";
 
@@ -8,6 +9,7 @@ export default function Home() {
       <Hero />
       <AboutLayout />
       <Prices />
+      <AmenitiesLayout />
     </main>
   );
 }
